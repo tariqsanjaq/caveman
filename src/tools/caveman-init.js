@@ -35,8 +35,8 @@ Boundaries: code/commits/PRs written normal.
 const SENTINEL = 'Respond terse like smart caveman';
 
 // Marker fence for blocks appended to files the user also authors (AGENTS.md,
-// copilot-instructions.md). Same convention as bin/lib/openclaw.js (SOUL.md)
-// and the opencode AGENTS.md path in bin/install.js. Without it our block can
+// copilot-instructions.md). Same convention as cli/lib/openclaw.js (SOUL.md)
+// and the opencode AGENTS.md path in cli/install.js. Without it our block can
 // be neither refreshed on upgrade nor removed on uninstall — it just fossilizes
 // in the user's repo.
 const FENCE_BEGIN = '<!-- caveman-begin -->';
@@ -84,11 +84,11 @@ function writeAtomic(fullPath, content) {
 
 // OpenClaw is a global workspace tool (not per-repo) and needs two write
 // targets — a skill folder + a SOUL.md bootstrap block. The shared helper
-// lives at bin/lib/openclaw.js; we require it lazily so caveman-init.js
+// lives at cli/lib/openclaw.js; we require it lazily so caveman-init.js
 // keeps working when run standalone (curl|node) without the helper on disk.
 function loadOpenclawHelper() {
   try {
-    return require(path.join(__dirname, '..', '..', 'bin', 'lib', 'openclaw.js'));
+    return require(path.join(__dirname, '..', '..', 'cli', 'lib', 'openclaw.js'));
   } catch (_) { return null; }
 }
 

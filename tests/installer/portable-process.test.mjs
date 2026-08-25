@@ -7,7 +7,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const require = createRequire(import.meta.url);
-const portable = require(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "bin", "lib", "portable-process.js"));
+const portable = require(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "cli", "lib", "portable-process.js"));
 
 test("root installer unwraps Windows Node shims without a shell", () => {
   const root = mkdtempSync(join(tmpdir(), "caveman-installer-win-"));
