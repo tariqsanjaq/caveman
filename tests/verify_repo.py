@@ -225,12 +225,12 @@ def verify_synced_files() -> None:
         )
 
     ensure(
-        (ROOT / "bin" / "install.js").exists(),
-        "bin/install.js missing — package.json bin entry would break npx caveman",
+        (ROOT / "cli" / "install.js").exists(),
+        "cli/install.js missing — package.json bin entry would break npx caveman",
     )
     ensure(
-        (ROOT / "bin" / "lib" / "settings.js").exists(),
-        "bin/lib/settings.js missing — installer would crash on JSONC settings.json",
+        (ROOT / "cli" / "lib" / "settings.js").exists(),
+        "cli/lib/settings.js missing — installer would crash on JSONC settings.json",
     )
 
     print("Synced copies, caveman.skill zip, and installer entrypoints OK")
@@ -323,8 +323,8 @@ def verify_manifests_and_syntax() -> None:
     run(["node", "--check", "src/hooks/caveman-activate.js"])
     run(["node", "--check", "src/hooks/caveman-mode-tracker.js"])
     run(["node", "--check", "src/hooks/cavecrew-model-overrides.js"])
-    run(["node", "--check", "bin/install.js"])
-    run(["node", "--check", "bin/lib/settings.js"])
+    run(["node", "--check", "cli/install.js"])
+    run(["node", "--check", "cli/lib/settings.js"])
     bash = shutil.which("bash")
     if bash is not None:
         run([bash, "-n", "src/hooks/install.sh"])
@@ -355,7 +355,7 @@ def verify_package_contents() -> None:
     ensure(isinstance(payload, list) and len(payload) == 1, "unexpected npm pack manifest")
     files = {entry["path"] for entry in payload[0]["files"]}
     required = {
-        "bin/install.js",
+        "cli/install.js",
         "agents/cavecrew-investigator.md",
         "agents/cavecrew-builder.md",
         "agents/cavecrew-reviewer.md",
